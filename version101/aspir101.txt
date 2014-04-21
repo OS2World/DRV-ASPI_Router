@@ -1,0 +1,7 @@
+ASPI Router 1.01
+
+(ASPI Application API)
+Ersatz fuer ASPIR100.ZIP in /pub/comp/os/os2/leo/drivers/misc
+
+Daniel Dorau
+woodst@cs.tu-berlin.de

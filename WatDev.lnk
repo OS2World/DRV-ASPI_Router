@@ -1,0 +1,7 @@
+name WatDev.sys 
+file dev\device.lib 
+file dev\devmisc.lib 
+file header.obj 
+file init.obj 
+file ioctl.obj 
+file strategy.obj 

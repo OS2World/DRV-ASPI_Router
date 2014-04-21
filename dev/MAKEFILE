@@ -1,0 +1,56 @@
+.ERASE
+.SUFFIXES:
+.SUFFIXES: .lst .obj .lib .c .asm .def
+
+CFLAGS  = -dDEBUG=1 -bt=os2 -d1 -e60 -5 -i$(INC) -omerlin -s -wx -xd -ze -zdp -zff -zgf -zl -zq -zu
+CC      = WPP $(CFLAGS)
+
+AFLAGS  = -q
+ASM     = WASM $(AFLAGS)
+
+DFLAGS  = -l -s
+DIS     = WDISASM $(DFLAGS)
+
+LFLAGS  = system os2 dll option quiet, map, align=512, eliminate
+LINK    = WLINK $(LFLAGS)
+
+BFLAGS  = -s -t -c -b -q -n
+LIB     = WLIB $(BFLAGS)
+
+IFLAGS  = /nologo
+IMPLIB  = IMPLIB $(IFLAGS)
+
+.obj.lst:
+        $(DIS) $*
+
+.c.obj: .AUTODEPEND
+        $(CC) $*.c
+
+.asm.obj: .AUTODEPEND
+        $(ASM) $*.asm
+
+.def.lib:
+        $(IMPLIB) $*.lib $*.def
+
+FILE0   = device.obj impdos.lib impmsg.lib impnls.lib
+FILE1   = math.obj comm.obj debug.obj
+FILE2   =
+FILE3   =
+FILE4   =
+FILE5   =
+FILE6   =
+FILE7   =
+FILE8   =
+FILE9   =
+FILES   = $(FILE0) $(FILE1) $(FILE2) $(FILE3) $(FILE4) $(FILE5) $(FILE6) $(FILE7) $(FILE8) $(FILE9)
+
+
+
+all: device.lib devmisc.lib .symbolic
+    @%null
+
+device.lib: $(FILE0)
+    $(LIB) device.lib +device.obj +impdos.lib +impmsg.lib +impnls.lib
+
+devmisc.lib: $(FILE1)
+    $(LIB) devmisc.lib +math.obj +comm.obj +debug.obj

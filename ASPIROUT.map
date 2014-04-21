@@ -1,0 +1,173 @@
+WATCOM Linker Version 10.5
+Copyright by WATCOM International Corp. 1985, 1995. All rights reserved.
+Created on:       98/11/29 15:15:29
+Warning(1027): file ioctl.obj(E:\develop\aspi\ioctl.c): redefinition of long unsigned near LockHandle ignored
+Warning(1027): file ioctl.obj(E:\develop\aspi\ioctl.c): redefinition of long unsigned near AspiEntry ignored
+Warning(1027): file ioctl.obj(E:\develop\aspi\ioctl.c): redefinition of short unsigned near AspiData ignored
+Warning(1027): file ioctl.obj(E:\develop\aspi\ioctl.c): redefinition of long unsigned near postSema ignored
+Warning(1027): file ioctl.obj(E:\develop\aspi\ioctl.c): redefinition of long unsigned near Hook1 ignored
+Warning(1027): file close.obj(E:\develop\aspi\close.c): redefinition of long unsigned near LockHandle ignored
+Warning(1027): file close.obj(E:\develop\aspi\close.c): redefinition of long unsigned near AspiEntry ignored
+Warning(1027): file close.obj(E:\develop\aspi\close.c): redefinition of short unsigned near AspiData ignored
+Warning(1027): file close.obj(E:\develop\aspi\close.c): redefinition of long unsigned near postSema ignored
+Warning(1027): file close.obj(E:\develop\aspi\close.c): redefinition of long unsigned near Hook1 ignored
+Executable Image: ASPIROUT.sys
+creating an OS/2 16-bit dynamic link library
+Warning(1028): aspiPost is an undefined reference
+Warning(1028): postEntry is an undefined reference
+
+
+                        +------------+
+                        |   Groups   |
+                        +------------+
+
+Group                           Address              Size
+=====                           =======              ====
+
+DGROUP                          0001:0000            00000208
+CGROUP                          0002:0000            000005b6
+
+
+
+                        +--------------+
+                        |   Segments   |
+                        +--------------+
+
+Segment                Class          Group          Address         Size
+=======                =====          =====          =======         ====
+
+_HEADER                DATA           DGROUP         0001:0000       0000001e
+CONST                  DATA           DGROUP         0001:001e       0000000a
+CONST2                 DATA           DGROUP         0001:0028       00000000
+_DATA                  DATA           DGROUP         0001:0028       00000158
+_BSS                   BSS            DGROUP         0001:0180       00000086
+_ENDDS                 ENDDS          DGROUP         0001:0206       00000001
+_INITDATA              INITDATA       DGROUP         0001:0208       00000000
+_TEXT                  CODE           CGROUP         0002:0000       000005b6
+_ENDCS                 CODE                          0003:0000       00000001
+_INITTEXT              CODE                          0003:0001       00000000
+CODE                   CODE           CGROUP         0002:05b6       00000000
+ENDDATA                ENDDATA        DGROUP         0001:0208       00000000
+
+
+                        +----------------+
+                        |   Memory Map   |
+                        +----------------+
+
+* = unreferenced symbol
++ = symbol only referenced locally
+
+Address        Symbol
+=======        ======
+
+Module: dev\device.lib(device)
+0001:0028      _Dev_Entry
+0001:002c      _Dev_StdEntry
+0001:0030*     _Dev_DbgEntry
+0002:0000*     __wcpp_2_pure_error__
+0002:0000*     __wcpp_2_undef_vfun__
+0001:0206      ___OffFinalDS
+0003:0000      ___OffFinalCS
+Module: dev\devmisc.lib(debug)
+0001:0034*     COMStream near cdbg
+0001:003e*     COMStream near ccom1
+0001:0048*     COMStream near ccom2
+Module: dev\devmisc.lib(comm)
+0002:0023*     ComWriteChar
+0002:002e*     ComWriteStr
+0002:0042*     ComWrite32
+Module: dev\devmisc.lib(math)
+0002:00a2*     __U4M
+0002:00a2*     __I4M
+0002:00be*     __U4D
+0002:00e3*     __I4D
+Module: post.obj(post.asm)
+0002:0108      postEntry_
+0002:0108*     cstart_
+Module: init.obj(E:\develop\aspi\init.c)
+0002:0126      short unsigned near StratInit( RP far * )
+0001:018c      long unsigned near LockHandle
+0001:0190      long unsigned near AspiEntry
+0001:0194      short unsigned near AspiData
+0001:0196      long unsigned near postSema
+0001:019a      long unsigned near Hook1
+Module: ioctl.obj(E:\develop\aspi\ioctl.c)
+0001:01c0+     char unsigned far * near SRBPtr
+0001:01c4+     long unsigned near SRBPhys
+0001:01c8+     long unsigned near SRBPtr2
+0001:01cc+     long unsigned near SRBPhys2
+0002:01f6      ctx_hand_
+0002:021f      _aspiPost
+0002:025e      short unsigned near StratIOCtl( RP far * )
+0001:01d8+     long unsigned near aspiPostAddr
+0001:01dc+     short unsigned near codeseg
+0001:01de+     short unsigned near dataseg
+0001:01e0+     short unsigned near bufseg
+0001:01e2+     short unsigned near result
+0001:01e4+     char unsigned near SRBCommand
+0001:01e5      _postInProgress
+0001:01e6*     short near data
+Module: strategy.obj(E:\develop\aspi\strategy.c)
+0002:0534      Strategy_
+0001:0140+     short unsigned (near * near StratDispatch[])( RP far * )
+Module: remove.obj(E:\develop\aspi\remove.c)
+0002:0564      short unsigned near StratRemove( RP far * )
+Module: shutdown.obj(E:\develop\aspi\shutdown.c)
+0002:0568      short unsigned near StratShutdown( RP far * )
+Module: error.obj(E:\develop\aspi\error.c)
+0002:056c      short unsigned near StratError( RP far * )
+Module: open.obj(E:\develop\aspi\open.c)
+0002:0570      short unsigned near StratOpen( RP far * )
+Module: close.obj(E:\develop\aspi\close.c)
+0002:0574      short unsigned near StratClose( RP far * )
+Module: read.obj(E:\develop\aspi\read.c)
+0002:05ae      short unsigned near StratRead( RP far * )
+Module: write.obj(E:\develop\aspi\write.c)
+0002:05b2      short unsigned near StratWrite( RP far * )
+
+
+                        +----------------------+
+                        |   Imported Symbols   |
+                        +----------------------+
+
+Symbol                              Module
+======                              ======
+
+DOSCASEMAP                          NLS
+DOSPUTMESSAGE                       MSG
+DOSGETMESSAGE                       MSG
+DOSBEEP                             DOSCALLS
+DOSCHGFILEPTR                       DOSCALLS
+DOSCLOSE                            DOSCALLS
+DOSDELETE                           DOSCALLS
+DOSDEVCONFIG                        DOSCALLS
+DOSDEVIOCTL                         DOSCALLS
+DOSFINDCLOSE                        DOSCALLS
+DOSFINDFIRST                        DOSCALLS
+DOSFINDNEXT                         DOSCALLS
+DOSGETENV                           DOSCALLS
+DOSGETHUGESHIFT                     DOSCALLS
+DOSGETMACHINEMODE                   DOSCALLS
+DOSGETVERSION                       DOSCALLS
+DOSOPEN                             DOSCALLS
+DOSQCURDIR                          DOSCALLS
+DOSQCURDISK                         DOSCALLS
+DOSQFILEINFO                        DOSCALLS
+DOSQFILEMODE                        DOSCALLS
+DOSREAD                             DOSCALLS
+DOSWRITE                            DOSCALLS
+
+
+                        +--------------------+
+                        |   Libraries Used   |
+                        +--------------------+
+
+
+
+                        +-----------------------+
+                        |   Linker Statistics   |
+                        +-----------------------+
+
+Stack size:  0200 (512.)
+Memory size:  07bf (1983.)
+Link time: 00:00.73

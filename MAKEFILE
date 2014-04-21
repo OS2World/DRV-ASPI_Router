@@ -1,0 +1,57 @@
+# Setup environment
+INC     = .\dev
+
+.ERASE
+.SUFFIXES:
+.SUFFIXES: .lst .obj .c .asm
+
+CFLAGS  = -bt=os2 -d1 -e60 -5 -i$(INC) -omerlin -s -xd -ze -zdp -zff -zgf -zl -zq -zu
+CC      = WPP $(CFLAGS)
+
+AFLAGS  = -q
+ASM     = WASM $(AFLAGS)
+
+DFLAGS  = -l -s
+DIS     = WDISASM $(DFLAGS)
+
+LFLAGS  = system os2 dll reference aspiPost, postEntry option nod, c, map, align=512
+LINK    = WLINK $(LFLAGS)
+
+BFLAGS  = -s -t -c -b -q -n
+LIB     = WLIB $(BFLAGS)
+
+.obj.lst:
+        $(DIS) $*
+
+.c.obj: .AUTODEPEND
+        $(CC) $*.c
+
+.asm.obj: .AUTODEPEND
+        $(ASM) $*.asm
+
+
+# Sources
+FILE0   = dev\device.lib dev\devmisc.lib
+FILE1   = header.obj post.obj init.obj ioctl.obj strategy.obj remove.obj shutdown.obj error.obj open.obj close.obj read.obj write.obj
+FILE2   =
+FILE3   =
+FILE4   =
+FILE5   =
+FILE6   =
+FILE7   =
+FILE8   =
+FILE9   =
+FILES   = $(FILE0) $(FILE1) $(FILE2) $(FILE3) $(FILE4) $(FILE5) $(FILE6) $(FILE7) $(FILE8) $(FILE9)
+TARGET  = ASPIROUT
+
+
+
+all: $(TARGET).sys
+
+$(TARGET).lnk: makefile
+    @echo name $(TARGET).sys > $(TARGET).lnk
+    @for %f in ($(FILES)) do @echo file %f >> $(TARGET).lnk
+
+$(TARGET).sys: $(TARGET).lnk $(FILES)
+    $(LINK) @$(TARGET).lnk
+
